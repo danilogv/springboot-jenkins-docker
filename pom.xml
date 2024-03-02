@@ -34,7 +34,6 @@
 
 	<distributionManagement>
    		<repository>
-       			<uniqueVersion>false</uniqueVersion>
        			<id>nexus</id>
        			<name>nexus</name>
        			<url>http://localhost:8082/repository/nexus-release/</url>
