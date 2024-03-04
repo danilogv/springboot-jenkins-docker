@@ -84,6 +84,7 @@ under the License.
       <mirrorOf>*</mirrorOf>
       <name>Pseudo repository to mirror external repositories initially using HTTP.</name>
       <url>http://localhost:8081/repository/nexus-release/</url>
+      <blocked>false</blocked>	
     </mirror>
     <!--<mirror>
       <id>maven-default-http-blocker</id>
@@ -142,7 +143,7 @@ under the License.
   </profiles>
   
   <activeProfiles>
-    <activeProfile>nexus</activeProfile>
+    <activeProfile>nexus-release</activeProfile>
   </activeProfiles>
 
 </settings>
