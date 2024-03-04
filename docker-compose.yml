@@ -3,7 +3,7 @@ services:
     container_name: jenkins
     image: jenkins/jenkins:lts
     ports:
-      - "8081:8080"
+      - "8082:8080"
     volumes:
       - jenkins-home:/var/jenkins-home
     environment:
@@ -13,7 +13,7 @@ services:
     image: sonatype/nexus3:latest
     container_name: nexus
     ports:
-      - "8082:8081"
+      - "8081:8081"
     volumes:
       - nexus-data:/nexus-data/sonatype-work
     environment:

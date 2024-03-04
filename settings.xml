@@ -46,35 +46,6 @@ under the License.
 <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0" 
           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
           xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
-  <!-- localRepository
-   | The path to the local repository maven will use to store artifacts.
-   |
-   | Default: ~/.m2/repository
-  <localRepository>/path/to/local/repo</localRepository>
-  -->
-
-  <!-- interactiveMode
-   | This will determine whether maven prompts you when it needs input. If set to false,
-   | maven will use a sensible default value, perhaps based on some other setting, for
-   | the parameter in question.
-   |
-   | Default: true
-  <interactiveMode>true</interactiveMode>
-  -->
-
-  <!-- offline
-   | Determines whether maven should attempt to connect to the network when executing a build.
-   | This will have an effect on artifact downloads, artifact deployment, and others.
-   |
-   | Default: false
-  <offline>false</offline>
-  -->
-
-  <!-- pluginGroups
-   | This is a list of additional group identifiers that will be searched when resolving plugins by their prefix, i.e.
-   | when invoking a command line like "mvn prefix:goal". Maven will automatically add the group identifiers
-   | "org.apache.maven.plugins" and "org.codehaus.mojo" if these are not already contained in the list.
-   |-->
   <pluginGroups>
     <!-- pluginGroup
      | Specifies a further group identifier to use for plugin lookup.
@@ -82,11 +53,6 @@ under the License.
     -->
   </pluginGroups>
 
-  <!-- proxies
-   | This is a list of proxies which can be used on this machine to connect to the network.
-   | Unless otherwise specified (by system property or command-line switch), the first proxy
-   | specification in this list marked as active will be used.
-   |-->
   <proxies>
     <!-- proxy
      | Specification for one proxy, to be used in connecting to the network.
@@ -104,70 +70,27 @@ under the License.
     -->
   </proxies>
 
-  <!-- servers
-   | This is a list of authentication profiles, keyed by the server-id used within the system.
-   | Authentication profiles can be used whenever maven must make a connection to a remote server.
-   |-->
   <servers>
     <server>
       <id>nexus-release</id>
       <username>admin</username>
       <password>123</password>
     </server>
-    <!-- server
-     | Specifies the authentication information to use when connecting to a particular server, identified by
-     | a unique name within the system (referred to by the 'id' attribute below).
-     | 
-     | NOTE: You should either specify username/password OR privateKey/passphrase, since these pairings are 
-     |       used together.
-     |
-    <server>
-      <id>deploymentRepo</id>
-      <username>repouser</username>
-      <password>repopwd</password>
-    </server>
-    -->
-    
-    <!-- Another sample, using keys to authenticate.
-    <server>
-      <id>siteServer</id>
-      <privateKey>/path/to/private/key</privateKey>
-      <passphrase>optional; leave empty if not used.</passphrase>
-    </server>
-    -->
   </servers>
-
-  <!-- mirrors
-   | This is a list of mirrors to be used in downloading artifacts from remote repositories.
-   | 
-   | It works like this: a POM may declare a repository to use in resolving certain artifacts.
-   | However, this repository may have problems with heavy traffic at times, so people have mirrored
-   | it to several places.
-   |
-   | That repository definition will have a unique id, so we can create a mirror reference for that
-   | repository, to be used as an alternate download site. The mirror site will be the preferred 
-   | server for that repository.
-   |-->
+            
   <mirrors>
-    <!-- mirror
-     | Specifies a repository mirror site to use instead of a given repository. The repository that
-     | this mirror serves has an ID that matches the mirrorOf element of this mirror. IDs are used
-     | for inheritance and direct lookup purposes, and must be unique across the set of mirrors.
-     |
     <mirror>
-      <id>mirrorId</id>
-      <mirrorOf>repositoryId</mirrorOf>
-      <name>Human Readable Name for this Mirror.</name>
-      <url>http://my.repository.com/repo/path</url>
+      <id>maven-default-http</id>
+      <mirrorOf>*</mirrorOf>
+      <name>Pseudo repository to mirror external repositories initially using HTTP.</name>
+      <url>http://localhost:8081/repository/nexus-release/</url>
     </mirror>
-     -->
-    <mirror>
+    <!--<mirror>
       <id>maven-default-http-blocker</id>
       <mirrorOf>external:http:*</mirrorOf>
       <name>Pseudo repository to mirror external repositories initially using HTTP.</name>
       <url>http://0.0.0.0/</url>
-      <blocked>true</blocked>
-    </mirror>
+      <blocked>true</blocked>-->
   </mirrors>
   
   <!-- profiles
@@ -192,78 +115,34 @@ under the License.
    |
    |-->
   <profiles>
-    <!-- profile
-     | Specifies a set of introductions to the build process, to be activated using one or more of the
-     | mechanisms described above. For inheritance purposes, and to activate profiles via <activatedProfiles/>
-     | or the command line, profiles have to have an ID that is unique.
-     |
-     | An encouraged best practice for profile identification is to use a consistent naming convention
-     | for profiles, such as 'env-dev', 'env-test', 'env-production', 'user-jdcasey', 'user-brett', etc.
-     | This will make it more intuitive to understand what the set of introduced profiles is attempting
-     | to accomplish, particularly when you only have a list of profile id's for debug.
-     |
-     | This profile example uses the JDK version to trigger activation, and provides a JDK-specific repo.
     <profile>
-      <id>jdk-1.4</id>
-
-      <activation>
-        <jdk>1.4</jdk>
-      </activation>
-
+      <id>nexus</id>
       <repositories>
+        
         <repository>
-          <id>jdk14</id>
-          <name>Repository for JDK 1.4 builds</name>
-          <url>http://www.myhost.com/maven/jdk14</url>
-          <layout>default</layout>
-          <snapshotPolicy>always</snapshotPolicy>
+          <id>central</id>
+          <url>http://localhost:8081/repository/nexus-release/</url>
+          <releases>
+              <enabled>true</enabled>
+            </releases>
         </repository>
+        
+        <pluginRepositories>
+          <pluginRepository>
+            <id>central</id>
+          	<url>http://localhost:8081/repository/nexus-release/</url>
+          	<releases>
+              <enabled>true</enabled>
+            </releases>
+          </pluginRepository>
+        </pluginRepositories>
+        
       </repositories>
     </profile>
-    -->
-
-    <!--
-     | Here is another profile, activated by the system property 'target-env' with a value of 'dev',
-     | which provides a specific path to the Tomcat instance. To use this, your plugin configuration
-     | might hypothetically look like:
-     |
-     | ...
-     | <plugin>
-     |   <groupId>org.myco.myplugins</groupId>
-     |   <artifactId>myplugin</artifactId>
-     |   
-     |   <configuration>
-     |     <tomcatLocation>${tomcatPath}</tomcatLocation>
-     |   </configuration>
-     | </plugin>
-     | ...
-     |
-     | NOTE: If you just wanted to inject this configuration whenever someone set 'target-env' to
-     |       anything, you could just leave off the <value/> inside the activation-property.
-     |
-    <profile>
-      <id>env-dev</id>
-
-      <activation>
-        <property>
-          <name>target-env</name>
-          <value>dev</value>
-        </property>
-      </activation>
-
-      <properties>
-        <tomcatPath>/path/to/tomcat/instance</tomcatPath>
-      </properties>
-    </profile>
-    -->
   </profiles>
-
-  <!-- activeProfiles
-   | List of profiles that are active for all builds.
-   |
+  
   <activeProfiles>
-    <activeProfile>alwaysActiveProfile</activeProfile>
-    <activeProfile>anotherAlwaysActiveProfile</activeProfile>
+    <activeProfile>nexus</activeProfile>
   </activeProfiles>
-  -->
+
 </settings>
