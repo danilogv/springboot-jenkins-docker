@@ -36,7 +36,7 @@
    		<repository>
        			<id>nexus-release</id>
        			<name>nexus-release</name>
-       			<url>http://localhost:8081/repository/nexus-release/</url>
+       			<url>http://localhost:8082/repository/nexus-release/</url>
    		</repository>
 	</distributionManagement>
 
