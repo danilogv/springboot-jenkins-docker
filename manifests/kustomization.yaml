@@ -1,0 +1,6 @@
+---
+resources:
+- springboot-jenkins-docker-configmap.yaml
+- springboot-jenkins-docker-deployment.yaml
+- springboot-jenkins-docker-service.yaml
+- springboot-jenkins-docker-db-secret.yaml

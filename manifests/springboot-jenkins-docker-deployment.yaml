@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: springboot-jenkins-docker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: springboot-jenkins-docker
+  template:
+    metadata:
+      labels:
+        app: springboot-jenkins-docker
+    spec:
+      restartPolicy: Always
+      containers:
+        - name: springboot-jenkins-docker
+          image: host.docker.internal:8082/#browse/browse:nexus-release:com/danilo/springboot-jenkins-docker/0.0.1
+          envFrom:
+            - configMapRef:
+                name: springboot-jenkins-docker-configmap
+          command: ["java"]
+          args:
+            [
+              "-jar",
+              "-Dspring.profiles.active=k8s",
+              "/usr/app/springboot-jenkins-docker.jar",
+            ]

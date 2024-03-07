@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: springboot-jenkins-docker-configmap
+data:
+  APPLICATION_NAME: "springboot-jenkins-docker"
+  SERVER_PORT: "8080"
