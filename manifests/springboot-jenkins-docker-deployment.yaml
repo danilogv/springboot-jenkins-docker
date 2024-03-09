@@ -15,7 +15,7 @@ spec:
       restartPolicy: Always
       containers:
         - name: springboot-jenkins-docker
-          image: localhost:8082/service/rest/repository/browse/nexus-release/com/danilo/springboot-jenkins-docker/0.0.1/
+          image: localhost:8082/service/rest/repository/browse/nexus-release/com/danilo/springboot-jenkins-docker/0.0.1:0.0.1
           envFrom:
             - configMapRef:
                 name: springboot-jenkins-docker-configmap
