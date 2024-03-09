@@ -15,7 +15,7 @@ spec:
       restartPolicy: Always
       containers:
         - name: nexus
-          image: sonatype/nexus3:0.0.1
+          image: sonatype/nexus3
           envFrom:
             - configMapRef:
                 name: springboot-jenkins-docker-configmap
