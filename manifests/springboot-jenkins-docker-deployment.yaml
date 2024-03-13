@@ -24,7 +24,7 @@ spec:
             [
               "-jar",
               "-Dspring.profiles.active=k8s",
-              "http://host.docker.internal:8082/service/rest/repository/browse/nexus-release/com/danilo/springboot-jenkins-docker/0.0.1/springboot-jenkins-docker-0.0.1.jar",
+              "curl --location 'http://host.docker.internal:8082/service/rest/repository/browse/nexus-release/com/danilo/springboot-jenkins-docker/0.0.1/springboot-jenkins-docker-0.0.1.jar'",
             ]
       imagePullSecrets:
         - name: nexus-key
