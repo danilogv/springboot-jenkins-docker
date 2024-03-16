@@ -24,7 +24,7 @@ spec:
             [
               "-jar",
               "-Dspring.profiles.active=k8s",
-              "springboot-jenkins-docker-0.0.1.jar",
+              "/springboot-jenkins-docker-0.0.1.jar",
             ]
       imagePullSecrets:
         - name: nexus-key
