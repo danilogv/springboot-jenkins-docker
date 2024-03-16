@@ -14,8 +14,8 @@ spec:
     spec:
       restartPolicy: Always
       containers:
-        - name: nexus
-          image: sonatype/nexus3
+        - name: alpine
+          image: alpine
           envFrom:
             - configMapRef:
                 name: springboot-jenkins-docker-configmap
@@ -24,7 +24,7 @@ spec:
             [
               "-jar",
               "-Dspring.profiles.active=k8s",
-              "/usr/src/app/springboot-jenkins-docker.jar",
+              "springboot-jenkins-docker-0.0.1.jar",
             ]
       imagePullSecrets:
         - name: nexus-key
