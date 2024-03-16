@@ -14,8 +14,8 @@ spec:
     spec:
       restartPolicy: Always
       containers:
-        - name: alpine
-          image: alpine
+        - name: jdk
+          image: openjdk:17-jdk
           envFrom:
             - configMapRef:
                 name: springboot-jenkins-docker-configmap
