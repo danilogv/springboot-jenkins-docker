@@ -11,7 +11,7 @@
 
 	<groupId>com.danilo</groupId>
 	<artifactId>springboot-jenkins-docker</artifactId>
-	<version>0.0.4</version>
+	<version>0.0.5</version>
 	<name>springboot-jenkins-docker</name>
 	<description>Project using Pipeline CI/CD with Jenkins and Docker</description>
 
