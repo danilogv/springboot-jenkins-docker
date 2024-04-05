@@ -3,5 +3,5 @@ kind: ConfigMap
 metadata:
   name: springboot-jenkins-docker-configmap
 data:
-  APPLICATION_NAME: "springboot-jenkins-docker"
-  SERVER_PORT: "8080"
+  spring.application.name: "springboot-jenkins-docker"
+  server.port: "8080"
