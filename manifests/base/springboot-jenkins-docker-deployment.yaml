@@ -15,16 +15,7 @@ spec:
       restartPolicy: Always
       containers:
         - name: jdk
-          image: openjdk:17-jdk
+          image: openjdk:17
           envFrom:
             - configMapRef:
                 name: springboot-jenkins-docker-configmap
-          command: ["java"]
-          args:
-            [
-              "-jar",
-              "-Dspring.profiles.active=k8s",
-              "springboot-jenkins-docker-0.0.2.jar",
-            ]
-      imagePullSecrets:
-        - name: nexus-key
