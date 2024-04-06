@@ -19,10 +19,3 @@ spec:
           envFrom:
             - configMapRef:
                 name: springboot-jenkins-docker-configmap
-          command: ["java"]
-          args:
-            [
-              "-jar",
-              "-Dspring.profiles.active=k8s",
-              "/app/springboot-jenkins-docker.jar",
-            ]
