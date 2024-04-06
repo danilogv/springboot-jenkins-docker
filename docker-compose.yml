@@ -20,14 +20,12 @@ services:
       - INSTALL4J_ADD_VM_PARAMS=-Xms2703M -Xmx2703M -XX:MaxDirectMemorySize=2703M
     restart: always
   jdk:
-    image: openjdk:17
-    command: /bin/bash -c "curl -L -X GET 'http://host.docker.internal:8082/service/rest/v1/search/assets/download?sort=version&repository=nexus-release&group=com.danilo&name=springboot-jenkins-docker&maven.baseVersion=0.0.5' -o /app/springboot-jenkins-docker.jar && java -Dspring.profiles.active=k8s -jar /app/springboot-jenkins-docker.jar"
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
       - "8080:8080"
-    volumes:
-      - jdk-data:/app
 
 volumes:
   jenkins-home: {}
   nexus-data: {}
-  jdk-data: {}
