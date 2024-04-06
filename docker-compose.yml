@@ -30,3 +30,4 @@ services:
 volumes:
   jenkins-home: {}
   nexus-data: {}
+  jdk-data: {}
