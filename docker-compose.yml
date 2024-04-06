@@ -19,12 +19,6 @@ services:
     environment:
       - INSTALL4J_ADD_VM_PARAMS=-Xms2703M -Xmx2703M -XX:MaxDirectMemorySize=2703M
     restart: always
-  jdk:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    ports:
-      - "8080:8080"
 
 volumes:
   jenkins-home: {}
